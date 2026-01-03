@@ -30,7 +30,20 @@ let currentQ = 0;
 
 function loadQuestion() {
   const q = questions[currentQ];
-  document.getElementById("question-text").innerText = q.q;
+
+  // Update question counter
+  document.getElementById("counter").innerText = `Question ${currentQ + 1} of ${
+    questions.length
+  }`;
+
+  // Update question text with animation
+  const questionEl = document.getElementById("question-text");
+  questionEl.style.animation = "none";
+  setTimeout(() => {
+    questionEl.innerText = q.q;
+    questionEl.style.animation = "slideInLeft 0.4s ease-out";
+  }, 10);
+
   const list = document.getElementById("options-list");
   list.innerHTML = "";
 
@@ -38,7 +51,7 @@ function loadQuestion() {
     const btn = document.createElement("button");
     btn.className = "option-btn";
     btn.innerText = opt;
-    btn.onclick = () => handleAnswer(i);
+    btn.onclick = () => handleAnswer(i, btn);
     list.appendChild(btn);
   });
 
@@ -47,17 +60,46 @@ function loadQuestion() {
   }%`;
 }
 
-function handleAnswer(choice) {
+function handleAnswer(choice, buttonEl) {
+  const buttons = document.querySelectorAll(".option-btn");
+
+  // Disable all buttons during animation
+  buttons.forEach((btn) => (btn.style.pointerEvents = "none"));
+
   if (choice === questions[currentQ].a) {
-    currentQ++;
-    if (currentQ < questions.length) {
-      loadQuestion();
-    } else {
-      // Success! Go to the main tool
-      window.location.href = "popup.html";
-    }
+    // Correct answer
+    buttonEl.classList.add("correct");
+
+    setTimeout(() => {
+      currentQ++;
+      if (currentQ < questions.length) {
+        loadQuestion();
+      } else {
+        // Quiz completed - show success animation
+        const card = document.querySelector(".card");
+        card.style.animation = "successPulse 0.6s ease";
+
+        // Save that quiz is completed
+        setTimeout(() => {
+          chrome.storage.local.set({ quizCompleted: true }, () => {
+            window.location.href = "popup.html";
+          });
+        }, 600);
+      }
+    }, 600);
   } else {
-    alert("Not quite! Try that one again. 🧠");
+    // Wrong answer - shake animation
+    buttonEl.classList.add("wrong");
+
+    // Vibrate if supported
+    if (navigator.vibrate) {
+      navigator.vibrate([50, 100, 50]);
+    }
+
+    setTimeout(() => {
+      buttonEl.classList.remove("wrong");
+      buttons.forEach((btn) => (btn.style.pointerEvents = "auto"));
+    }, 500);
   }
 }
 

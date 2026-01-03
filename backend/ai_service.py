@@ -38,10 +38,6 @@ class AIService:
         )
 
         try:
-            print("Sending request to Gemini API...")
-            print(f"System Instruction: {system_instruction}")
-            print(f"RuleFs: {rules}")
-            print(self.client.models.list_models(all=True, page_size=5))
             response = self.client.models.generate_content(
                 model="gemini-flash-latest",
                 contents=[system_instruction, rules, f"Text: {text}"],

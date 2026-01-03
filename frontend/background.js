@@ -1,14 +1,13 @@
-// This listener waits for you to click the extension icon
-chrome.action.onClicked.addListener((tab) => {
-  chrome.tabs.create({
-    url: "welcome.html",
-  });
-  console.log("Welcome page opened successfully!");
-});
-
-// This still runs when you first install/reload the extension
+// When extension is first installed or updated
 chrome.runtime.onInstalled.addListener(() => {
-  chrome.tabs.create({
-    url: "welcome.html",
+  // Check if quiz is already done
+  chrome.storage.local.get(["quizCompleted"], (result) => {
+    if (!result.quizCompleted) {
+      // First time - show welcome flow
+      chrome.tabs.create({
+        url: "welcome.html",
+      });
+    }
+    // If already completed, do nothing - default_popup will handle it
   });
 });

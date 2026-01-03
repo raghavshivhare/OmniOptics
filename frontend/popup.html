@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="welcome.css" />
+    <style>
+      body {
+        width: 450px;
+        min-height: 300px;
+        height: auto;
+        padding: 0;
+      }
+
+      .card {
+        min-height: auto;
+      }
+
+      h3 {
+        color: #1a1a2e;
+        font-size: 24px;
+        font-weight: 700;
+        margin-bottom: 8px;
+        letter-spacing: -0.3px;
+      }
+
+      p {
+        margin-bottom: 20px;
+      }
+
+      #result {
+        background: linear-gradient(
+          135deg,
+          rgba(102, 126, 234, 0.03),
+          rgba(118, 75, 162, 0.03)
+        );
+        border: 2px solid #e2e8f0;
+        border-left: 4px solid #667eea;
+        border-radius: 12px;
+        padding: 18px;
+        margin-top: 20px;
+        white-space: pre-wrap;
+        font-size: 15px;
+        line-height: 1.8;
+        color: #334155;
+        min-height: 120px;
+        max-height: 400px;
+        overflow-y: auto;
+        transition: all 0.3s ease;
+        animation: fadeIn 0.5s ease-out;
+      }
+
+      #result:empty {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #94a3b8;
+        font-style: italic;
+      }
+
+      #result:not(:empty) {
+        box-shadow: 0 4px 12px rgba(102, 126, 234, 0.08);
+      }
+
+      /* Custom scrollbar */
+      #result::-webkit-scrollbar {
+        width: 6px;
+      }
+
+      #result::-webkit-scrollbar-track {
+        background: #f1f5f9;
+        border-radius: 10px;
+      }
+
+      #result::-webkit-scrollbar-thumb {
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        border-radius: 10px;
+      }
+
+      /* Loading animation */
+      .loading {
+        color: #667eea;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        animation: pulse 1.5s ease-in-out infinite;
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.5;
+        }
+      }
+
+      .loading::after {
+        content: "";
+        width: 20px;
+        height: 20px;
+        border: 3px solid #667eea;
+        border-top-color: transparent;
+        border-radius: 50%;
+        animation: spin 0.8s linear infinite;
+      }
+
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      /* Success state */
+      .success {
+        animation: slideInUp 0.5s ease-out;
+      }
+
+      @keyframes slideInUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Error state */
+      .error {
+        background: linear-gradient(
+          135deg,
+          rgba(239, 68, 68, 0.05),
+          rgba(220, 38, 38, 0.05)
+        );
+        border-left-color: #ef4444;
+        color: #dc2626;
+        animation: shake 0.5s ease;
+      }
+
+      /* Button specific styles for popup */
+      #simplifyBtn {
+        position: relative;
+        font-size: 15px;
+        padding: 14px 28px;
+      }
+
+      #simplifyBtn:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+      }
+
+      #simplifyBtn.processing::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        right: 20px;
+        transform: translateY(-50%);
+        width: 16px;
+        height: 16px;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        border-top-color: white;
+        border-radius: 50%;
+        animation: spin 0.6s linear infinite;
+      }
+
+      /* Instruction hint */
+      .hint {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 12px;
+        background: rgba(251, 191, 36, 0.1);
+        border-left: 3px solid #fbbf24;
+        border-radius: 8px;
+        font-size: 13px;
+        color: #92400e;
+        margin-top: 15px;
+        animation: fadeIn 0.6s ease-out 0.5s both;
+      }
+
+      .hint::before {
+        content: "Tip: ";
+        font-size: 14px;
+        font-weight: 600;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <h3>Omini Optics</h3>
+      <p>Highlight text on any webpage and simplify it instantly</p>
+      <button id="simplifyBtn">Simplify Selection</button>
+      <div id="result">Your simplified text will appear here...</div>
+      <div class="hint">Select text on the page before clicking the button</div>
+    </div>
+    <script src="popup.js"></script>
+  </body>
+</html>

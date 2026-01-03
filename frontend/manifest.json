@@ -3,12 +3,18 @@
   "name": "OmniOptics ADHD",
   "version": "1.0",
   "description": "A minimalist assistant to help you stay on track.",
-  "permissions": ["tabs"],
-  "host_permissions": ["http://127.0.0.1:8000/*"],
+  "permissions": ["tabs", "storage", "scripting"],
+  "host_permissions": ["http://127.0.0.1:8000/*", "<all_urls>"],
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"]
+    }
+  ],
   "background": {
     "service_worker": "background.js"
   },
   "action": {
-    "default_popup": "welcome.html"
+    "default_popup": "popup.html"
   }
 }
