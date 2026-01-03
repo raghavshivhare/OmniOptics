@@ -5,6 +5,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+
 class AIService:
     def __init__(self):
         # Load key and initialize client
@@ -28,7 +29,7 @@ class AIService:
             f"User Preferences: {profile.get('style', 'Bullet Points')}, "
             f"Level: {profile.get('level', 'Simple')}.\n"
         )
-        
+
         rules = (
             "1. Rewrite the input into short, scannable blocks.\n"
             "2. Use bullet points for any lists.\n"
@@ -39,17 +40,18 @@ class AIService:
         try:
             response = self.client.models.generate_content(
                 model="gemini-1.5-flash",
-                contents=[system_instruction, rules, f"Text: {text}"]
+                contents=[system_instruction, rules, f"Text: {text}"],
             )
-            
+
             if not response.text:
                 return "The AI couldn't process this content. It might be blocked or empty."
-                
+
             return response.text
-            
+
         except Exception as e:
             # Handle API errors or timeouts
             return f"Brain Connection Error: {str(e)}"
+
 
 # Create a single instance to be used by main.py
 ai_brain = AIService()

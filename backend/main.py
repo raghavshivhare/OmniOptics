@@ -13,14 +13,17 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+
 # Define the structure of the incoming request from your extension
 class FocusRequest(BaseModel):
     text: str = Field(..., min_length=1, description="The text to be simplified")
     profile: dict = Field(default={"style": "bullets", "level": "easy"})
 
+
 @app.get("/health")
 def health():
     return {"status": "The Bridge is active"}
+
 
 @app.post("/process")
 async def process_text(request: FocusRequest):
@@ -35,7 +38,9 @@ async def process_text(request: FocusRequest):
         # General edge case catch
         raise HTTPException(status_code=500, detail="An internal error occurred.")
 
+
 if __name__ == "__main__":
     import uvicorn
+
     # Run the server on port 8000
     uvicorn.run(app, host="127.0.0.1", port=8000)
