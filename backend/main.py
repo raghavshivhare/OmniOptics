@@ -1,9 +1,9 @@
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
-from services.ai_service import ai_brain
+from ai_service import ai_brain
 
-app = FastAPI(title="FocusFlow ADHD API")
+app = FastAPI(title="OmniOptics ADHD API")
 
 # Enable CORS so the browser extension can communicate with this local server
 app.add_middleware(
@@ -18,6 +18,11 @@ app.add_middleware(
 class FocusRequest(BaseModel):
     text: str = Field(..., min_length=1, description="The text to be simplified")
     profile: dict = Field(default={"style": "bullets", "level": "easy"})
+
+
+@app.get("/")
+def root():
+    return {"message": "Welcome to the OmniOptics ADHD API"}
 
 
 @app.get("/health")

@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "FocusFlow ADHD",
+  "name": "OmniOptics ADHD",
   "version": "1.0",
   "description": "A minimalist assistant to help you stay on track.",
   "permissions": ["tabs"],

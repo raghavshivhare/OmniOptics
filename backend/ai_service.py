@@ -38,8 +38,12 @@ class AIService:
         )
 
         try:
+            print("Sending request to Gemini API...")
+            print(f"System Instruction: {system_instruction}")
+            print(f"RuleFs: {rules}")
+            print(self.client.models.list_models(all=True, page_size=5))
             response = self.client.models.generate_content(
-                model="gemini-1.5-flash",
+                model="gemini-1.5-flash-001",
                 contents=[system_instruction, rules, f"Text: {text}"],
             )
 
@@ -50,6 +54,7 @@ class AIService:
 
         except Exception as e:
             # Handle API errors or timeouts
+
             return f"Brain Connection Error: {str(e)}"
 
 
