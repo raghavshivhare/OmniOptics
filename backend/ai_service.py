@@ -43,7 +43,7 @@ class AIService:
             print(f"RuleFs: {rules}")
             print(self.client.models.list_models(all=True, page_size=5))
             response = self.client.models.generate_content(
-                model="gemini-1.5-flash-001",
+                model="gemini-flash-latest",
                 contents=[system_instruction, rules, f"Text: {text}"],
             )
 
