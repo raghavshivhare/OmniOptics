@@ -3,7 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 from services.ai_service import ai_brain
 
-app = FastAPI(title="FocusFlow ADHD API")
+app = FastAPI(title="OmniOptics ADHD API")
 
 # Enable CORS so the browser extension can communicate with this local server
 app.add_middleware(
@@ -44,3 +44,4 @@ if __name__ == "__main__":
 
     # Run the server on port 8000
     uvicorn.run(app, host="127.0.0.1", port=8000)
+
