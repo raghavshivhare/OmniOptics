@@ -39,7 +39,7 @@ class AIService:
 
         try:
             response = self.client.models.generate_content(
-                model="gemini-1.5-flash",
+                model="gemini-flash-latest",
                 contents=[system_instruction, rules, f"Text: {text}"],
             )
 
@@ -55,3 +55,4 @@ class AIService:
 
 # Create a single instance to be used by main.py
 ai_brain = AIService()
+
