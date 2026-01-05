@@ -6,7 +6,7 @@
 
 ## 🎯 Overview
 
-OmniOptics (FocusFlow) is a Chrome extension designed with ADHD-friendly principles to transform dense, overwhelming text into scannable, digestible content. Users can highlight any text on a webpage and get an AI-simplified version with bullet points, bold keywords, and reduced cognitive load.
+OmniOptics is a Chrome extension designed with ADHD-friendly principles to transform dense, overwhelming text into scannable, digestible content. Users can highlight any text on a webpage and get an AI-simplified version with bullet points, bold keywords, and reduced cognitive load.
 
 ### Key Features
 
