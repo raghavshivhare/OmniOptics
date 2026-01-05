@@ -1,32 +1,53 @@
 const questions = [
   {
-    q: "Where does the 'looks' (UI) live?",
-    o: ["Presentation Tier", "Logic Tier", "Data Tier"],
-    a: 0,
+    q: "How do you prefer to read complex text?",
+    o: [
+      "Bullet points and short sentences",
+      "Full paragraphs with context",
+      "Summary with key highlights",
+    ],
+    noCorrect: true,
   },
   {
-    q: "What file is the extension's 'map'?",
-    o: ["content.js", "manifest.json", "popup.html"],
-    a: 1,
+    q: "What distracts you most while reading?",
+    o: [
+      "Long paragraphs of text",
+      "Too many colors and visuals",
+      "Unfamiliar vocabulary",
+    ],
+    noCorrect: true,
   },
   {
-    q: "OCR processing happens in the...",
-    o: ["Data Tier", "Presentation Tier", "Logic Tier"],
-    a: 2,
+    q: "How would you like simplified text formatted?",
+    o: [
+      "Numbered list with main ideas",
+      "Short paragraphs",
+      "Single sentence per point",
+    ],
+    noCorrect: true,
   },
   {
-    q: "Where is scan history stored?",
-    o: ["Logic Tier", "Data Tier", "Presentation Tier"],
-    a: 1,
+    q: "When reading, do you prefer:",
+    o: [
+      "Simple language only",
+      "Brief technical terms",
+      "Mix of simple and detailed",
+    ],
+    noCorrect: true,
   },
   {
-    q: "To update code, you must ___ the page.",
-    o: ["Close", "Refresh", "Mute"],
-    a: 1,
+    q: "What helps you understand text better?",
+    o: [
+      "Clear structure and spacing",
+      "Examples and real-world context",
+      "Bold important words",
+    ],
+    noCorrect: true,
   },
 ];
 
 let currentQ = 0;
+let userAnswers = {};
 
 function loadQuestion() {
   const q = questions[currentQ];
@@ -66,41 +87,34 @@ function handleAnswer(choice, buttonEl) {
   // Disable all buttons during animation
   buttons.forEach((btn) => (btn.style.pointerEvents = "none"));
 
-  if (choice === questions[currentQ].a) {
-    // Correct answer
-    buttonEl.classList.add("correct");
+  // Highlight selected option
+  buttonEl.classList.add("correct");
 
-    setTimeout(() => {
-      currentQ++;
-      if (currentQ < questions.length) {
-        loadQuestion();
-      } else {
-        // Quiz completed - show success animation
-        const card = document.querySelector(".card");
-        card.style.animation = "successPulse 0.6s ease";
+  // Store user's answer
+  userAnswers[currentQ] = {
+    question: questions[currentQ].q,
+    selectedOption: questions[currentQ].o[choice],
+    optionIndex: choice,
+  };
 
-        // Save that quiz is completed
-        setTimeout(() => {
-          chrome.storage.local.set({ quizCompleted: true }, () => {
-            window.location.href = "popup.html";
-          });
-        }, 600);
-      }
-    }, 600);
-  } else {
-    // Wrong answer - shake animation
-    buttonEl.classList.add("wrong");
-
-    // Vibrate if supported
-    if (navigator.vibrate) {
-      navigator.vibrate([50, 100, 50]);
+  // Move to next question or complete quiz
+  setTimeout(() => {
+    currentQ++;
+    if (currentQ < questions.length) {
+      loadQuestion();
+    } else {
+      // Quiz completed - save preferences and redirect
+      chrome.storage.local.set(
+        {
+          quizCompleted: true,
+          readingPreferences: userAnswers,
+        },
+        () => {
+          window.location.href = "popup.html";
+        }
+      );
     }
-
-    setTimeout(() => {
-      buttonEl.classList.remove("wrong");
-      buttons.forEach((btn) => (btn.style.pointerEvents = "auto"));
-    }, 500);
-  }
+  }, 600);
 }
 
 loadQuestion();

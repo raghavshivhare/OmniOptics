@@ -175,7 +175,7 @@ Buttons: 15-16px, 600 weight
 
 5. **Send to Backend**:
    ```javascript
-   fetch("http://127.0.0.1:8000/process", {
+   fetch("https://omnioptics.onrender.com/process", {
      method: "POST",
      body: JSON.stringify({
        text: selectedText,
@@ -223,7 +223,7 @@ After editing any file:
   "scripting"  // Execute code to grab selected text
 ],
 "host_permissions": [
-  "http://127.0.0.1:8000/*",  // Access local backend
+  "https://omnioptics.onrender.com/*",  // Access deployed backend
   "<all_urls>"                 // Run on all websites
 ]
 ```
@@ -284,7 +284,7 @@ chrome.storage.local.clear()
 
 **"Could not connect to Backend"**
 - Solution: Make sure backend is running (`python main.py`)
-- Check URL is `http://127.0.0.1:8000`
+- Check URL is `https://omnioptics.onrender.com`
 
 **Quiz appears every time**
 - Solution: Check Chrome storage in DevTools

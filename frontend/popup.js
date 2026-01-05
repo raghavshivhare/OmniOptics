@@ -1,22 +1,46 @@
-document.getElementById("simplifyBtn").addEventListener("click", async () => {
-  const resultDiv = document.getElementById("result");
-  const button = document.getElementById("simplifyBtn");
+// Views
+const initialView = document.getElementById("initialView");
+const loadingView = document.getElementById("loadingView");
+const resultView = document.getElementById("resultView");
 
-  // Add loading state
-  button.disabled = true;
-  button.classList.add("processing");
-  resultDiv.className = "loading";
-  resultDiv.innerHTML =
-    '<span class="loading">Processing with Gemini AI...</span>';
+// Elements
+const simplifyBtn = document.getElementById("simplifyBtn");
+const backBtn = document.getElementById("backBtn");
+const copyBtn = document.getElementById("copyBtn");
+const shareBtn = document.getElementById("shareBtn");
+const resultContent = document.getElementById("resultContent");
+
+let simplifiedText = "";
+
+// Show specific view
+function showView(view) {
+  initialView.classList.remove("hidden");
+  loadingView.classList.remove("visible");
+  resultView.classList.remove("visible");
+
+  if (view === "initial") {
+    initialView.classList.remove("hidden");
+  } else if (view === "loading") {
+    initialView.classList.add("hidden");
+    loadingView.classList.add("visible");
+  } else if (view === "result") {
+    initialView.classList.add("hidden");
+    resultView.classList.add("visible");
+  }
+}
+
+// Main simplify function
+simplifyBtn.addEventListener("click", async () => {
+  showView("loading");
 
   try {
-    // 1. Get the current active tab
+    // Get active tab
     const [tab] = await chrome.tabs.query({
       active: true,
       currentWindow: true,
     });
 
-    // 2. Execute script directly to get selected text (more reliable than messaging)
+    // Get selected text
     const results = await chrome.scripting.executeScript({
       target: { tabId: tab.id },
       func: () => window.getSelection().toString(),
@@ -25,20 +49,25 @@ document.getElementById("simplifyBtn").addEventListener("click", async () => {
     const selectedText = results[0].result;
 
     if (!selectedText || selectedText.trim() === "") {
-      resultDiv.className = "error";
-      resultDiv.innerHTML = "Please highlight some text first!";
-      button.disabled = false;
-      button.classList.remove("processing");
+      showView("initial");
 
-      // Vibrate if supported
+      // Show error feedback
+      simplifyBtn.textContent = "Please select text first!";
+      simplifyBtn.style.background = "#ef4444";
+
+      setTimeout(() => {
+        simplifyBtn.textContent = "Simplify Selected Text";
+        simplifyBtn.style.background = "";
+      }, 2000);
+
       if (navigator.vibrate) {
         navigator.vibrate(200);
       }
       return;
     }
 
-    // 3. Send that text to your Python Backend
-    const backendResponse = await fetch("http://127.0.0.1:8000/process", {
+    // Call backend
+    const response = await fetch("https://omnioptics.onrender.com/process", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -47,34 +76,86 @@ document.getElementById("simplifyBtn").addEventListener("click", async () => {
       }),
     });
 
-    const data = await backendResponse.json();
+    const data = await response.json();
 
-    // 4. Show the transformed text to the user
     if (data.status === "success") {
-      resultDiv.className = "success";
-      resultDiv.innerText = data.data;
+      simplifiedText = data.data;
+      resultContent.textContent = simplifiedText;
+      showView("result");
 
-      // Success vibration
       if (navigator.vibrate) {
         navigator.vibrate([50, 100, 50]);
       }
     } else {
-      resultDiv.className = "error";
-      resultDiv.innerHTML = "Error: " + (data.message || "Unknown error");
+      throw new Error(data.message || "Unknown error");
     }
   } catch (error) {
     console.error("Error:", error);
-    resultDiv.className = "error";
-    resultDiv.innerHTML =
-      "Could not connect to Backend.<br><br>Make sure Uvicorn is running:<br><code>cd backend && python main.py</code>";
+    showView("initial");
 
-    // Error vibration
+    // Show error
+    simplifyBtn.textContent = "Connection failed!";
+    simplifyBtn.style.background = "#ef4444";
+
+    setTimeout(() => {
+      simplifyBtn.textContent = "Simplify Selected Text";
+      simplifyBtn.style.background = "";
+    }, 3000);
+
     if (navigator.vibrate) {
-      navigator.vibrate([100, 50, 100, 50, 100]);
+      navigator.vibrate([100, 50, 100]);
     }
-  } finally {
-    // Re-enable button
-    button.disabled = false;
-    button.classList.remove("processing");
+  }
+});
+
+// Back button
+backBtn.addEventListener("click", () => {
+  showView("initial");
+  simplifiedText = "";
+  resultContent.textContent = "";
+});
+
+// Copy button
+copyBtn.addEventListener("click", async () => {
+  try {
+    await navigator.clipboard.writeText(simplifiedText);
+
+    const originalText = copyBtn.textContent;
+    copyBtn.textContent = "Copied!";
+    copyBtn.style.background = "#10b981";
+    copyBtn.style.color = "white";
+
+    setTimeout(() => {
+      copyBtn.textContent = originalText;
+      copyBtn.style.background = "";
+      copyBtn.style.color = "";
+    }, 1500);
+
+    if (navigator.vibrate) {
+      navigator.vibrate(50);
+    }
+  } catch (error) {
+    console.error("Copy failed:", error);
+  }
+});
+
+// Share button
+shareBtn.addEventListener("click", async () => {
+  if (navigator.share) {
+    try {
+      await navigator.share({
+        title: "Simplified Text - OmniOptics",
+        text: simplifiedText,
+      });
+    } catch (error) {
+      if (error.name !== "AbortError") {
+        console.error("Share failed:", error);
+        // Fallback to copy
+        copyBtn.click();
+      }
+    }
+  } else {
+    // Fallback to copy if share not supported
+    copyBtn.click();
   }
 });

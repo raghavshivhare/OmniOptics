@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OmniOptics - ADHD Focus Bridge | Chrome Extension</title>
+    <meta
+      name="description"
+      content="Transform complex text into ADHD-friendly content with AI-powered simplification"
+    />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <div class="container">
+        <div class="nav-content">
+          <div class="logo">
+            <span class="logo-icon">✨</span>
+            <span class="logo-text">OmniOptics</span>
+          </div>
+          <ul class="nav-links">
+            <li><a href="#features">Features</a></li>
+            <li><a href="#how-it-works">How It Works</a></li>
+            <li><a href="#team">Team</a></li>
+            <li><a href="#download" class="nav-cta">Download</a></li>
+          </ul>
+          <button class="mobile-menu-toggle" aria-label="Toggle menu">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-background">
+        <div class="gradient-orb orb-1"></div>
+        <div class="gradient-orb orb-2"></div>
+        <div class="gradient-orb orb-3"></div>
+      </div>
+      <div class="container">
+        <div class="hero-content">
+          <div class="hero-badge">Powered by Google Gemini AI</div>
+          <h1 class="hero-title">
+            Transform Complex Text Into
+            <span class="gradient-text">ADHD-Friendly</span>
+            Content
+          </h1>
+          <p class="hero-description">
+            A Chrome extension that simplifies dense text on any webpage using
+            AI. Built for students with ADHD to reduce cognitive overload and
+            improve focus.
+          </p>
+          <div class="hero-buttons">
+            <a href="#download" class="btn btn-primary btn-large">
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7 10 12 15 17 10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
+              </svg>
+              Download Extension
+            </a>
+            <a href="#how-it-works" class="btn btn-secondary btn-large">
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+              </svg>
+              Learn How It Works
+            </a>
+          </div>
+          <div class="hero-stats">
+            <div class="stat">
+              <div class="stat-number">99%</div>
+              <div class="stat-label">Accuracy</div>
+            </div>
+            <div class="stat">
+              <div class="stat-number">&lt;2s</div>
+              <div class="stat-label">Processing Time</div>
+            </div>
+            <div class="stat">
+              <div class="stat-number">100%</div>
+              <div class="stat-label">Free & Open Source</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="section features">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-badge">Features</span>
+          <h2 class="section-title">Why Choose OmniOptics?</h2>
+          <p class="section-description">
+            Designed with ADHD-friendly principles to reduce cognitive load and
+            improve comprehension
+          </p>
+        </div>
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon">
+              <svg
+                width="32"
+                height="32"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                <path d="M2 17l10 5 10-5M2 12l10 5 10-5"></path>
+              </svg>
+            </div>
+            <h3 class="feature-title">AI-Powered Simplification</h3>
+            <p class="feature-description">
+              Uses Google Gemini AI to transform complex paragraphs into bullet
+              points with bold keywords
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">
+              <svg
+                width="32"
+                height="32"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path>
+              </svg>
+            </div>
+            <h3 class="feature-title">Lightning Fast</h3>
+            <p class="feature-description">
+              Get simplified text in under 2 seconds. Works on any webpage -
+              Wikipedia, news sites, articles
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">
+              <svg
+                width="32"
+                height="32"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M8 14s1.5 2 4 2 4-2 4-2"></path>
+                <line x1="9" y1="9" x2="9.01" y2="9"></line>
+                <line x1="15" y1="9" x2="15.01" y2="9"></line>
+              </svg>
+            </div>
+            <h3 class="feature-title">ADHD-Friendly Design</h3>
+            <p class="feature-description">
+              Immediate feedback, clear progress indicators, and reduced visual
+              noise for better focus
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">
+              <svg
+                width="32"
+                height="32"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+              </svg>
+            </div>
+            <h3 class="feature-title">Privacy First</h3>
+            <p class="feature-description">
+              Runs locally on your machine. Your data never leaves your computer
+              except for AI processing
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">
+              <svg
+                width="32"
+                height="32"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+              </svg>
+            </div>
+            <h3 class="feature-title">Smart Text Selection</h3>
+            <p class="feature-description">
+              Highlight any text on any webpage and get instant simplification
+              with one click
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">
+              <svg
+                width="32"
+                height="32"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+              </svg>
+            </div>
+            <h3 class="feature-title">Interactive Onboarding</h3>
+            <p class="feature-description">
+              Learn about your reading style through an engaging quiz, helping
+              us personalize your experience and deliver content that matches
+              your preferences
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Google Technologies Section -->
+    <section class="section google-tech">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-badge">Powered by Google</span>
+          <h2 class="section-title">Built on Google's Ecosystem</h2>
+          <p class="section-description">
+            Leveraging cutting-edge Google technologies to deliver exceptional
+            performance and accessibility
+          </p>
+        </div>
+        <div class="tech-grid">
+          <div class="tech-card">
+            <div class="tech-logo">
+              <svg width="64" height="64" viewBox="0 0 24 24" fill="none">
+                <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="#4285F4" />
+                <path d="M2 17L12 22L22 17V12L12 17L2 12V17Z" fill="#34A853" />
+                <path d="M2 7V12L12 17V12L2 7Z" fill="#FBBC04" />
+                <path d="M12 12V17L22 12V7L12 12Z" fill="#EA4335" />
+              </svg>
+            </div>
+            <h3 class="tech-name">Google Gemini 2.5 Flash</h3>
+            <p class="tech-description">
+              Our core AI engine powered by Gemini 2.5 Flash for lightning-fast
+              text simplification with advanced natural language understanding
+              and ADHD-optimized prompt engineering
+            </p>
+            <div class="tech-features">
+              <span class="tech-tag">Natural Language Processing</span>
+              <span class="tech-tag">Context-Aware AI</span>
+              <span class="tech-tag">Real-time Processing</span>
+            </div>
+          </div>
+
+          <div class="tech-card">
+            <div class="tech-logo">
+              <svg width="64" height="64" viewBox="0 0 24 24" fill="none">
+                <circle cx="12" cy="12" r="10" fill="#4285F4" />
+                <circle cx="12" cy="12" r="7" fill="#EA4335" />
+                <circle cx="12" cy="12" r="4" fill="#FBBC04" />
+                <circle cx="12" cy="12" r="1.5" fill="#34A853" />
+              </svg>
+            </div>
+            <h3 class="tech-name">Chrome Extensions Platform</h3>
+            <p class="tech-description">
+              Built as a native Chrome extension using Manifest V3, the latest
+              standard for secure, performant, and privacy-focused browser
+              extensions with seamless integration
+            </p>
+            <div class="tech-features">
+              <span class="tech-tag">Manifest V3</span>
+              <span class="tech-tag">Service Workers</span>
+              <span class="tech-tag">Cross-Origin Support</span>
+            </div>
+          </div>
+
+          <div class="tech-card">
+            <div class="tech-logo">
+              <svg width="64" height="64" viewBox="0 0 24 24" fill="none">
+                <text
+                  x="12"
+                  y="16"
+                  text-anchor="middle"
+                  font-size="16"
+                  font-weight="bold"
+                  fill="#4285F4"
+                >
+                  Aa
+                </text>
+              </svg>
+            </div>
+            <h3 class="tech-name">Google Fonts</h3>
+            <p class="tech-description">
+              Using Inter font family from Google Fonts for optimal readability
+              and ADHD-friendly typography with consistent rendering across all
+              devices and platforms
+            </p>
+            <div class="tech-features">
+              <span class="tech-tag">Web-Optimized</span>
+              <span class="tech-tag">Accessible Typography</span>
+              <span class="tech-tag">Fast CDN Delivery</span>
+            </div>
+          </div>
+
+          <div class="tech-card">
+            <div class="tech-logo">
+              <svg width="64" height="64" viewBox="0 0 24 24" fill="none">
+                <rect
+                  x="4"
+                  y="4"
+                  width="16"
+                  height="16"
+                  rx="2"
+                  fill="#FBBC04"
+                />
+                <path
+                  d="M8 10H16M8 14H13"
+                  stroke="white"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                />
+              </svg>
+            </div>
+            <h3 class="tech-name">Chrome Storage API</h3>
+            <p class="tech-description">
+              Utilizing Chrome's Storage API to persist user preferences, quiz
+              completions, and reading patterns securely across sessions with
+              automatic cloud sync
+            </p>
+            <div class="tech-features">
+              <span class="tech-tag">Local Storage</span>
+              <span class="tech-tag">Sync Support</span>
+              <span class="tech-tag">Privacy-First</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section id="how-it-works" class="section how-it-works">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-badge">Process</span>
+          <h2 class="section-title">How It Works</h2>
+          <p class="section-description">
+            Simple 4-step process to transform any text
+          </p>
+        </div>
+        <div class="steps">
+          <div class="step">
+            <div class="step-number">01</div>
+            <div class="step-content">
+              <h3 class="step-title">Highlight Text</h3>
+              <p class="step-description">
+                Select any text on a webpage - articles, Wikipedia entries,
+                research papers, anything
+              </p>
+            </div>
+            <div class="step-visual">
+              <div class="mock-browser">
+                <div class="browser-bar">
+                  <div class="browser-dots"></div>
+                </div>
+                <div class="browser-content highlight-demo"></div>
+              </div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-number">02</div>
+            <div class="step-content">
+              <h3 class="step-title">Click Extension</h3>
+              <p class="step-description">
+                Click the OmniOptics icon in your Chrome toolbar to open the
+                popup
+              </p>
+            </div>
+            <div class="step-visual">
+              <div class="extension-icon-demo"></div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-number">03</div>
+            <div class="step-content">
+              <h3 class="step-title">AI Processing</h3>
+              <p class="step-description">
+                Our backend sends your text to Gemini AI which simplifies it
+                into bullet points
+              </p>
+            </div>
+            <div class="step-visual">
+              <div class="ai-processing-demo">
+                <div class="processing-dots">
+                  <span></span><span></span><span></span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-number">04</div>
+            <div class="step-content">
+              <h3 class="step-title">Get Results</h3>
+              <p class="step-description">
+                Receive ADHD-friendly text with bullet points, bold keywords,
+                and short sentences
+              </p>
+            </div>
+            <div class="step-visual">
+              <div class="result-demo">
+                <div class="result-line"></div>
+                <div class="result-line short"></div>
+                <div class="result-line"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Download Section -->
+    <section id="download" class="section download">
+      <div class="container">
+        <div class="download-content">
+          <div class="download-info">
+            <h2 class="download-title">Ready to Transform Your Reading?</h2>
+            <p class="download-description">
+              Download the extension and start simplifying complex text in
+              seconds. Perfect for students, researchers, and anyone with ADHD.
+            </p>
+            <a
+              href="./omni-optics-extension.zip"
+              class="btn btn-primary btn-large"
+              download
+            >
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7 10 12 15 17 10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
+              </svg>
+              Download Extension
+            </a>
+          </div>
+          <div class="installation-steps">
+            <div class="prototype-notice">
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="8" x2="12" y2="12"></line>
+                <line x1="12" y1="16" x2="12.01" y2="16"></line>
+              </svg>
+              <span
+                ><strong>Prototype Version:</strong> Chrome Web Store
+                publication is pending (review typically takes 3-5 days).
+                Install manually to test all features now!</span
+              >
+            </div>
+            <h3 class="steps-title">Installation Steps</h3>
+            <ol class="steps-list">
+              <li>
+                <strong>Download</strong> the extension ZIP file using the
+                button above
+              </li>
+              <li>
+                <strong>Extract</strong> the ZIP file to a folder on your
+                computer
+              </li>
+              <li>
+                Open Chrome and navigate to <code>chrome://extensions/</code>
+              </li>
+              <li>
+                Enable <strong>Developer mode</strong> (toggle in top-right
+                corner)
+              </li>
+              <li>
+                Click <strong>"Load unpacked"</strong> and select the extracted
+                <code>frontend/</code> folder
+              </li>
+              <li>Pin the extension icon to your toolbar for easy access</li>
+              <li>
+                Select any text on a webpage and click the extension icon!
+              </li>
+            </ol>
+            <div class="requirements">
+              <h4>Requirements</h4>
+              <ul>
+                <li>Google Chrome Browser (version 88 or higher)</li>
+                <li>Internet connection (for AI processing)</li>
+                <li>No API key needed - backend is deployed and ready!</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Upcoming Features Section -->
+    <section id="upcoming" class="section upcoming">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-badge">Coming Soon</span>
+          <h2 class="section-title">Upcoming Features</h2>
+          <p class="section-description">
+            Exciting enhancements we're working on
+          </p>
+        </div>
+        <div class="upcoming-grid">
+          <div class="upcoming-card">
+            <div class="upcoming-icon">📄</div>
+            <h3 class="upcoming-title">Full Page Summarization</h3>
+            <p class="upcoming-description">
+              Summarize entire articles and webpages with one click, not just
+              selected text
+            </p>
+            <span class="upcoming-status">Q1 2026</span>
+          </div>
+          <div class="upcoming-card">
+            <div class="upcoming-icon">⚙️</div>
+            <h3 class="upcoming-title">Custom Preferences</h3>
+            <p class="upcoming-description">
+              Save your preferred simplification style, level, and formatting
+              options
+            </p>
+            <span class="upcoming-status">Q1 2026</span>
+          </div>
+          <div class="upcoming-card">
+            <div class="upcoming-icon">💾</div>
+            <h3 class="upcoming-title">History & Bookmarks</h3>
+            <p class="upcoming-description">
+              Save simplified texts for later review and create a personal
+              knowledge base
+            </p>
+            <span class="upcoming-status">Q2 2026</span>
+          </div>
+          <div class="upcoming-card">
+            <div class="upcoming-icon">🧠</div>
+            <h3 class="upcoming-title">Adaptive User Reading Style</h3>
+            <p class="upcoming-description">
+              AI tracks your reading patterns, time spent, and content
+              preferences to customize quiz questions and simplification style
+              based on your unique behavior
+            </p>
+            <span class="upcoming-status">Q2 2026</span>
+          </div>
+          <div class="upcoming-card">
+            <div class="upcoming-icon">🗣️</div>
+            <h3 class="upcoming-title">Text-to-Speech</h3>
+            <p class="upcoming-description">
+              Listen to simplified text with natural-sounding AI voices for
+              accessibility
+            </p>
+            <span class="upcoming-status">Q2 2026</span>
+          </div>
+          <div class="upcoming-card">
+            <div class="upcoming-icon">🌍</div>
+            <h3 class="upcoming-title">Multi-Language Support</h3>
+            <p class="upcoming-description">
+              Simplify text in Spanish, French, German, and 20+ other languages
+            </p>
+            <span class="upcoming-status">Q3 2026</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team" class="section team">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-badge">Our Team</span>
+          <h2 class="section-title">Meet the Creators</h2>
+          <p class="section-description">
+            Built by passionate developers dedicated to making learning
+            accessible
+          </p>
+        </div>
+        <div class="team-grid">
+          <div class="team-card">
+            <div class="team-avatar">
+              <div
+                class="avatar-initials"
+                style="background: linear-gradient(135deg, #667eea, #764ba2)"
+              >
+                AS
+              </div>
+            </div>
+            <h3 class="team-name">Ateeksh Soni</h3>
+            <p class="team-role">Full Stack Developer</p>
+            <p class="team-bio">
+              Passionate about creating accessible technology and AI-powered
+              solutions for better learning experiences
+            </p>
+            <div class="team-socials">
+              <a
+                href="https://github.com/ateekshsoni"
+                target="_blank"
+                aria-label="GitHub"
+              >
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
+                  />
+                </svg>
+              </a>
+              <a
+                href="https://www.linkedin.com/in/ateekshsoni"
+                target="_blank"
+                aria-label="LinkedIn"
+              >
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"
+                  />
+                </svg>
+              </a>
+              <a href="mailto:ateekshsoni@gmail.com" aria-label="Email">
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"
+                  />
+                </svg>
+              </a>
+            </div>
+          </div>
+          <div class="team-card">
+            <div class="team-avatar">
+              <div
+                class="avatar-initials"
+                style="background: linear-gradient(135deg, #764ba2, #f093fb)"
+              >
+                OP
+              </div>
+            </div>
+            <h3 class="team-name">Oshvi Patidar</h3>
+            <p class="team-role">AI/ML Engineer</p>
+            <p class="team-bio">
+              Specializes in natural language processing and prompt engineering
+              with Google Gemini AI
+            </p>
+            <div class="team-socials">
+              <a href="https://github.com" target="_blank" aria-label="GitHub">
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
+                  />
+                </svg>
+              </a>
+              <a
+                href="https://linkedin.com"
+                target="_blank"
+                aria-label="LinkedIn"
+              >
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"
+                  />
+                </svg>
+              </a>
+              <a href="mailto:rahul@example.com" aria-label="Email">
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"
+                  />
+                </svg>
+              </a>
+            </div>
+          </div>
+          <div class="team-card">
+            <div class="team-avatar">
+              <div
+                class="avatar-initials"
+                style="background: linear-gradient(135deg, #a29bfe, #6c5ce7)"
+              >
+                PJ
+              </div>
+            </div>
+            <h3 class="team-name">Prisha Jain</h3>
+            <p class="team-role">UI/UX Designer</p>
+            <p class="team-bio">
+              Focuses on creating intuitive, ADHD-friendly user experiences with
+              modern design principles
+            </p>
+            <div class="team-socials">
+              <a href="https://github.com" target="_blank" aria-label="GitHub">
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
+                  />
+                </svg>
+              </a>
+              <a
+                href="https://linkedin.com"
+                target="_blank"
+                aria-label="LinkedIn"
+              >
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"
+                  />
+                </svg>
+              </a>
+              <a href="mailto:sneha@example.com" aria-label="Email">
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"
+                  />
+                </svg>
+              </a>
+            </div>
+          </div>
+          <div class="team-card">
+            <div class="team-avatar">
+              <div
+                class="avatar-initials"
+                style="background: linear-gradient(135deg, #fd79a8, #fa709a)"
+              >
+                RS
+              </div>
+            </div>
+            <h3 class="team-name">Raghav Shivhare</h3>
+            <p class="team-role">Backend Engineer</p>
+            <p class="team-bio">
+              Expert in FastAPI, API design, and building scalable backend
+              systems with cloud infrastructure
+            </p>
+            <div class="team-socials">
+              <a
+                href="https://github.com/raghavshivhare"
+                target="_blank"
+                aria-label="GitHub"
+              >
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
+                  />
+                </svg>
+              </a>
+              <a
+                href="https://linkedin.com"
+                target="_blank"
+                aria-label="LinkedIn"
+              >
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"
+                  />
+                </svg>
+              </a>
+              <a href="mailto:arjun@example.com" aria-label="Email">
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"
+                  />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-brand">
+            <div class="logo">
+              <span class="logo-icon">✨</span>
+              <span class="logo-text">OmniOptics</span>
+            </div>
+            <p class="footer-tagline">
+              Making learning accessible for everyone
+            </p>
+          </div>
+          <div class="footer-column">
+            <h4>Product</h4>
+            <ul>
+              <li><a href="#features">Features</a></li>
+              <li><a href="#how-it-works">How It Works</a></li>
+              <li><a href="#download">Download</a></li>
+            </ul>
+          </div>
+          <div class="footer-column">
+            <h4>Resources</h4>
+            <ul>
+              <li><a href="./README.md">Documentation</a></li>
+              <li><a href="./backend/README.md">API Docs</a></li>
+              <li><a href="https://github.com">GitHub</a></li>
+              <li><a href="#upcoming">Roadmap</a></li>
+            </ul>
+          </div>
+          <div class="footer-column">
+            <h4>Company</h4>
+            <ul>
+              <li><a href="#team">Team</a></li>
+              <li><a href="#">Blog</a></li>
+              <li><a href="#">Contact</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>
+            &copy; 2026 OmniOptics. Crafted with ❤️ by
+            <strong>NeuroNauts</strong> for better focus and learning.
+          </p>
+          <p class="footer-credits">
+            Powered by Google Gemini AI | MIT License
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+  </body>
+</html>
